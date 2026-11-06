@@ -6,6 +6,12 @@ export function buildServer({ db, referenceTime, logger = false }) {
   referenceTime = resolveReferenceTime(referenceTime);
   const app = Fastify({ logger, ajv: { customOptions: { removeAdditional: false } } });
 
+  app.get("/", async () => ({
+    service: "circle-recommendations",
+    endpoints: ["GET /health", "GET /users/:id/recommendations?limit=10&explain=false"],
+    try: "/users/15/recommendations?limit=3",
+  }));
+
   app.get("/health", async () => ({ status: "ok" }));
 
   app.get(

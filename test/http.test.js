@@ -22,6 +22,12 @@ test("GET /health", async () => {
   assert.deepEqual(res.json(), { status: "ok" });
 });
 
+test("GET / lists the endpoints", async () => {
+  const res = await get("/");
+  assert.equal(res.statusCode, 200);
+  assert.equal((await get(res.json().try)).statusCode, 200);
+});
+
 test("GET /users/:id/recommendations returns the ranked list with reasons and reference_time", async () => {
   const res = await get("/users/7/recommendations");
   assert.equal(res.statusCode, 200);

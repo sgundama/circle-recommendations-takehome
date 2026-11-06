@@ -61,9 +61,12 @@ The `reference_time` query parameter replaces `REFERENCE_TIME` for one request.
 ## 3. API
 
 ```
+GET /
 GET /health
 GET /users/:id/recommendations?limit=10&explain=false
 ```
+
+`GET /` lists the endpoints and gives one example path to try.
 
 | Parameter | Type | Default | Notes |
 | --- | --- | --- | --- |
